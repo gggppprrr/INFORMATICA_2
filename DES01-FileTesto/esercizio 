@@ -1,0 +1,47 @@
+//Stefano Bonfanti 4H
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define S 40
+#define V 8
+
+struct data
+{
+    int giorno;
+    char mese[S];
+    int anno;
+}typedef data;
+
+struct studente
+{
+    int matricola;
+    char cognome[S];
+    int voti[V];
+    data nascita;
+}typedef studente;
+
+void inseriscirecord(char fileName[], int numRecord);
+
+int main()
+{
+    FILE+*f1;
+    char NomeFile[]={"file.txt"};
+
+}
+void inserissciRecord(char fileName[], int numRecord)
+{
+    FILE*f1;
+    struct studente buffer;
+    f1=fopen(NomeFile,"wb");
+
+    int j=0;
+    if(f1!=0)
+    {
+        print("inserisci matricola ");
+        scanf();
+        print("inserisci cognome ");
+        scanf();
+    }
+}
+
+
