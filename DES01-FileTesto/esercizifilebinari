@@ -1,0 +1,319 @@
+//Stefano Bonfanti 4H 
+#include <stdio.h>      
+
+#include <stdlib.h>	   
+						
+#include <string.h>     
+
+//define
+#define S 50            
+
+#define V 3             
+
+#define MAX 50          
+
+//struct
+
+struct data              
+{
+    int giorno;
+    char mese[S];
+    int anno ;
+
+}typedef data;
+
+
+
+
+struct studente            
+{
+    int matricola;
+    char cognome[S];
+    int voti[V];
+    data nascita;
+
+}typedef studente;
+
+
+
+void inserisciRecord(char fileName[], int numRecord); 
+                                                        
+
+void stampaFile(char fileName[]);                     
+                                                               
+
+int ricercaRecord(char fileName[], char cognome[]);   
+                                                       
+                                                       
+
+int stampaRecord(char fileName[], int posizione);
+
+int correggiRecord(char fileName[], int posizione); 
+
+                                    
+
+
+int main()
+{
+    FILE *f1;                                  
+
+    char NomeFile[MAX] ={"file.txt"};          
+
+    inserisciRecord(NomeFile,1);              
+    
+
+
+
+}
+
+void inserisciRecord(char fileName[], int numRecord) 
+{
+    FILE *f1;
+
+    struct studente buffer;             
+
+    f1=fopen(fileName,"wb");           
+
+    int j=0;
+
+    if(f1!=0)                           
+    {
+
+        
+        printf("inserisci matricola\n");
+
+        scanf("%d",&buffer.matricola);
+
+        printf("\n");
+
+        printf("inserisci cognome\n");
+
+        scanf("%s",buffer.cognome);
+
+        for(j=0;j<V;j++)
+        {
+            printf("inserisci voti\n");
+            scanf("%d",&buffer.voti[j]);
+
+        }
+
+        printf("inserisci giorno\n");
+
+        scanf("%d",&buffer.nascita.giorno);
+
+        printf("inserisci mese\n");
+
+        scanf("%s",&buffer.nascita.mese);
+
+        printf("inserisci anno\n");
+
+        scanf("%d",&buffer.nascita.anno);
+
+        fwrite(&buffer,sizeof(struct studente),1,f1);
+
+		fclose(f1);
+    }
+
+    else
+    {
+        printf("impossibile aprire");
+    }
+
+}
+
+
+void stampaFile(char fileName[])
+{
+     FILE *f1;
+
+    struct studente buffer;           
+
+    f1=fopen(fileName,"rb");            
+
+    int j=0;
+
+    if(f1!=0)                          
+    {
+        while(!feof(f1))
+         {   
+
+           
+            printf("numero matricola: %d\n",buffer.matricola);
+
+            printf("cognome: %s\n",buffer.cognome);
+
+            for(j=0;j<V;j++)
+            {
+                printf("stampa  voti: %d\n",buffer.voti[j]);
+                
+
+            }
+
+            printf("inserisci giorno: %d\n",buffer.nascita.giorno);
+
+            printf("inserisci mese: %s\n",buffer.nascita.mese);
+
+            printf("inserisci anno: %d\n",buffer.nascita.anno);
+
+            fread(&buffer,sizeof(struct studente),1,f1);
+            
+            }
+
+
+
+
+		fclose(f1);
+    }
+
+    else
+    {
+        printf("impossibile aprire");
+    }
+
+
+}
+
+
+int ricercaRecord(char fileName[], char cognome[]) 
+ {
+    FILE *f1;
+
+    struct studente buffer;             
+
+    f1=fopen(fileName,"rb");            
+
+    int j=0;
+
+    int s;                            
+
+    int m=0;                           
+
+    if(f1!=0)                           
+    {
+        while(!feof(f1))
+         {
+            if(strcpm(buffer.cognome,cognome)==0)       /
+            {
+                printf("cognome: %s\n",buffer.cognome);
+                s=0;
+              
+
+                for(j=0;j<V;j++)
+                {
+                    s=s+buffer.voti[j];
+                    
+                }
+
+                media=s/V;
+                printf("la media dei voti :%d\n",media);
+
+                printf("inserisci giorno: %d\n",buffer.nascita.giorno);
+
+                printf("inserisci mese: %s\n",buffer.nascita.mese);
+
+                printf("inserisci anno: %d\n",buffer.nascita.anno);
+
+                fread(&buffer,sizeof(struct studente),1,f1);
+            }
+            
+            
+         }
+
+
+
+
+		fclose(f1);
+    }
+
+    else
+    {
+        printf("impossibile aprire");
+    }
+
+    return 
+
+ }
+
+int stampaRecord(char fileName[], int posizione) 
+{
+    FILE *f1;
+
+    struct studente buffer;            
+    f1=fopen(fileName,"rb");           
+
+    int j=0;
+
+    if(f1!=0)                          
+    {
+        while(!feof(f1))
+         {
+                if(buffer==posizione) 
+                {
+                   
+                    printf("numero matricola: %d\n",buffer.matricola);
+
+                    printf("cognome: %s\n",buffer.cognome);
+
+                    for(j=0;j<V;j++)
+                    {
+                        printf("stampa  voti: %d\n",buffer.voti[j]);
+                        
+
+                    }
+
+                    printf("inserisci giorno: %d\n",buffer.nascita.giorno);
+
+                    printf("inserisci mese: %s\n",buffer.nascita.mese);
+
+                    printf("inserisci anno: %d\n",buffer.nascita.anno);
+
+                    fread(&buffer,sizeof(struct studente),1,f1);
+                }
+            
+            
+            
+        }
+
+
+
+
+		fclose(f1);
+    }
+
+    else
+    {
+        printf("impossibile aprire");
+    }
+
+
+
+}
+
+
+
+int correggiRecord(char fileName[], int posizione)
+{
+
+     FILE *f1;
+
+    struct studente buffer;             
+
+    f1=fopen(fileName,"rb");            
+
+    int j=0;
+
+    if(f1!=0)                           
+    {
+       stampaRecord(FileName,Bonfanti);
+
+        fclose(f1);
+    }
+
+    else
+    {
+        printf("impossibile aprire");
+    }
+
+
+
+}
